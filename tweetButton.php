@@ -129,7 +129,7 @@ class HtmlHelper
 		$out = array();
 		foreach($attributes as $attr => $val)
 		{
-			$out[] .= sprintf($pattern, $attr, $val);
+			$out[] = sprintf($pattern, $attr, $val);
 		}
 		return ' ' . implode(" ", $out); # extra space at beginning.
 	}
