@@ -42,7 +42,7 @@
 								<?php
 								$count_option = get_option('tweetbutton-data-count');
 								$count_examples = array(
-									'horizontal' => 'tweet-hoiz.png',
+									'horizontal' => 'tweet-horiz.png',
 									'vertical' => 'tweet-vert.png',
 									'none' => 'tweet-none.png');
 								$selected = false;
