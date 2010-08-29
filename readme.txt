@@ -33,4 +33,4 @@ As of 1.0, the location of the tweet button is after the body of a post (anywher
 
 == Notes ==
 
-* Please give me feedback and feature requests at paulrredmond [at] gmail [dot] com. Thanks! Be sure to pass it on, your word of mouth would be an honor :) http://goredmonster.com
+* Please give me feedback and feature requests at paulrredmond [at] gmail [dot] com. Any help or word of mouth would be an honor :)
