@@ -1,45 +1,36 @@
 === Plugin Name ===
 Contributors: Paul Redmond
 Donate link: http://www.goredmonster.com
-Tags: twitter, twitter button, retweet
+Tags: twitter, twitter button, retweet, social media
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 
+Stable tag: 1.0
 
-Patterned after Dan Benjamin's Hivelogic enkoder, WP Emailcrypt keeps your email links safe automatically on-the-fly. No configuration.
+Automatically adds the new official Twitter tweet button after a post.
 
 == Description ==
 
-wp-emailcrypt is an automated way to reduce spam when linking to an email address. This plugin replaces mailto links with encrypted JavaScript that executes at runtime.
+Automatically adds the official Tweet button after a post. All options available at http://dev.twitter.com/pages/tweet_button are configurable in the WordPress options area.
 
 == Installation ==
 
-1. Upload `wp-emailcrypt` folder to the `/wp-content/plugins/` directory
+1. Upload `twitterbutton` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 
-= Does this plugin support shortcode API? =
+= Can I customize the location the Tweet button will appear? =
 
-Yes, shortcode is supported as of 0.2
-[emailcrypt email='you@aol.com' subject="Hey" title="Click me"]Email Link[/emailcrypt].
-
-If you want the email to also be the text in the link, you can use a self-closing shortcode like this:
-
-[emailcrypt email="you@you.com" /]
+As of 1.0, the location of the tweet button is after the body of a post (anywhere the_content() is called). I plan on allowing users to disable this filter and add the tweet button anywhere in the template.
 
 == Screenshots ==
 
 == Changelog ==
 
-= 0.1 =
+= 1.0 =
 * Initial version.
-* Disabled one of the three algorithms that was breaking the script.
-
-= 0.2 =
-* Added shortcode API support.
+* Configurable options in the WordPress admin.
 
 == Notes ==
 
-* Raw email addresses (not inside a link) are not encrypted at this time
-* If you find this useful, I would appreciate a [small donation] for continued work on this plugin and other plugins (http://www.goredmonster.com/donate/wp-emailcrypt "Donate with PayPal")
+* Please give me feedback and feature requests at paulrredmond [at] gmail [dot] com. Thanks! Be sure to pass it on, your word of mouth would be an honor :) http://goredmonster.com
