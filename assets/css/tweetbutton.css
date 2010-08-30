@@ -1,5 +1,6 @@
 /* TweetButton Styles */
-
-#tweetbutton { color: #000; }
+#tweetbutton-options select {
+	outline: none;
+}
 #twitterbutton-visual { margin: 1em 0 0;}
 #twitterbutton-visual img.hide { display: none; }

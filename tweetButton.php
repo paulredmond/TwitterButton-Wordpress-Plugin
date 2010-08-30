@@ -27,6 +27,11 @@ class TweetButton
 	
 	private $disable_auto = false;
 	
+	/**
+	 * Default position where TweetButton is rendered (after the_content()).
+	 */
+	private $position = 'after';
+	
 	private $data_attributes = array(
 		'data-url',
 		'data-via',
@@ -34,8 +39,8 @@ class TweetButton
 		'data-related',
 		'data-count',
 	);
-	
-	public function __construct()
+
+	private function __construct()
 	{
 		if ( is_admin() ) { 
 			add_action('admin_init', array($this, 'registerSettings'));
@@ -49,12 +54,27 @@ class TweetButton
 			add_option('tweetbutton-data-related');
 			add_option('tweetbutton-data-count');
 			add_option('tweetbutton-disable-auto');
+			add_option('tweetbutton-position');
 		}
 		
 		$this->Html = new HtmlHelper();
-		$this->disable_auto = get_option('tweetbutton-disable-auto');
 		
-		add_filter('the_content', array($this, 'theContentFilter'));
+		$this->disable_auto = get_option('tweetbutton-disable-auto');
+		$this->position = get_option('tweetbutton-position');
+		
+		if($this->getDisableAuto() !== true)
+		{
+			add_filter('the_content', array($this, 'theContentFilter'));
+		}
+	}
+	
+	public static function getInstance()
+	{
+		static $instance = array();
+			if (!$instance) {
+				$instance[0] = new TweetButton();
+			}
+			return $instance[0];
 	}
 	
 	public function scriptAssets()
@@ -76,6 +96,7 @@ class TweetButton
 		register_setting('tweetbutton-options', $this->option_prefix . 'data-related');
 		register_setting('tweetbutton-options', $this->option_prefix . 'data-count');
 		register_setting('tweetbutton-options', $this->option_prefix . 'disable-auto');
+		register_setting('tweetbutton-options', $this->option_prefix . 'position');
 	}
 	
 	public function addOptionsPage()
@@ -85,7 +106,12 @@ class TweetButton
 	
 	public function theContentFilter($content)
 	{
-		$out = $this->_buildTwitterHtml();
+		$out = $this->buildTwitterHtml( $this->getDataAttributes( get_permalink(), get_the_title() ) );
+		
+		if($this->getPosition() == 'before')
+		{
+			return $out . "\n" . $content;
+		}
 		
 		return $content . "\n" . $out;
 	}
@@ -101,12 +127,22 @@ class TweetButton
 		return $this->option_group;
 	}
 	
-	private function _buildTwitterHtml()
+	public function getDisableAuto()
+	{
+		return (boolean) $this->disable_auto;
+	}
+	
+	public function getPosition()
+	{
+		return $this->position;
+	}
+	
+	public function buildTwitterHtml($data_attributes=array())
 	{
 		# Get attributes
 		$link_attributes = array_merge(
 			array('class' => 'twitter-share-button', 'data-count' => 'vertical'),
-			$this->_getDataAttributes( get_permalink(), get_the_title() )
+			$data_attributes
 		);
 		
 		# Create HTML
@@ -122,7 +158,7 @@ class TweetButton
 	/**
 	 * Get options for twitter button from options table.
 	 */
-	private function _getDataAttributes($data_url, $data_text)
+	public function getDataAttributes($data_url, $data_text)
 	{
 		$attributes = array();
 		$option_prefix = 'twitter-button-';
@@ -151,9 +187,36 @@ class TweetButton
 	}
 }
 
-$tweet_button = new TweetButton(); # Init plugin.
+$tweet_button = TweetButton::getInstance(); # Init plugin.
 
 
+/**
+ * Function that can be used in themes to create a tweet button anywhere on the page.
+ *
+ * $attributes array options include 'data-url', 'data-via', 'data-text', 'data-related', 'data-count'
+ * Options in the attributes array trumps options in the database.
+ * 
+ * @param array $attributes array of data attributes.
+ * @param boolean $override Determines if calls made to renderTweetButton() will take effect even if auto-output is true.
+ * @param boolean $disable_options Setting to true will stop database option data from being merged with passed attributes.
+ * @return null echos output to page from function.
+ */
+function renderTweetButton($attributes=array(), $override=false, $disable_options=false)
+{
+	$tweet_button = TweetButton::getInstance();
+	
+	# Wont output if auto-output is enabled.
+	if($tweet_button->getDisableAuto() == true && $override === false) { return false; }
+	
+	# Options set in admin will be merged.
+	if($disable_options == false)
+	{
+		$data = $tweet_button->getDataAttributes($url, $text); # @todo update to use attributes array.
+		$attributes = array_merge($data, $attributes);
+	}
+	$out = $tweet_button->buildTwitterHtml($attributes);
+	echo $out;
+}
 
 
 /**

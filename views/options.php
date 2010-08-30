@@ -1,6 +1,6 @@
 <?php function renderTweetButtonOptions(TweetButton $tweetbutton) { ?>
 	
-	<div class="wrap">
+	<div id="tweetbutton-options" class="wrap">
 		<h2>TweetButton Options</h2>
 		
 		<p class="author">Created by <a href="http://goredmonster.com">Paul Redmond</a>.</p>
@@ -25,6 +25,18 @@
 						<td>
 								<?php echo $tweetbutton->Html->input('text', 'tweetbutton-data-related', null, array('class' => 'regular-text')) ?>
 							<span class="description">This could be a partner or related account. (optional)</span>
+						</td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><label for="tweetbutton-position">Position of TweetButton</label></th>
+						<td>
+							<?php
+							echo $tweetbutton->Html->select('tweetbutton-position', array(
+								'after' => 'After Content',
+								'before' => 'Before Content',
+							));
+							?>
+							<span class="description">Only applies if auto-output is enabled</span>
 						</td>
 					</tr>
 					<tr valign="top">
@@ -59,17 +71,17 @@
 							</div>
 						</td>
 					</tr>
-					<!-- <tr valign="top">
-							<th scope="row">Output Options</th>
-							<td>
-								<fieldset><legend class="screen-reader-text"><span>Membership</span></legend>
-									<label for="users_can_register">
-										<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-disable-auto', 1) ?>
-										Disable Auto-Output
-									</label>
-								</fieldset>
-							</td>
-						</tr> -->
+					<tr valign="top">
+						<th scope="row">Output Options</th>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Auto-Output</span></legend>
+								<label for="users_can_register">
+									<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-disable-auto', 1) ?>
+									Disable Auto-Output <br /><span class="description">(Disabling auto-output requires theme developer to output code)</span>
+								</label>
+							</fieldset>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 			

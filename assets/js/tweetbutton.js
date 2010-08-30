@@ -8,7 +8,11 @@ jQuery(document).ready(function($){
 	
 	// data-via keyup event.
 	$( data_via ).keyup(function(event){
-		$( at_via ).html( $(data_via).val() );
+		var val = $(data_via).val();
+		val = val.replace('@', '');
+		
+		$( at_via ).html( val );
+		$(data_via).val( val );
 	});
 	
 	// Count display change event.
