@@ -31,12 +31,15 @@
 						<th scope="row">Display Button on</th>
 						<td>
 							<fieldset><legend class="screen-reader-text"><span>Pages tweet buttons will appear on:</span></legend>
-								<label for="users_can_register">
+								<label for="tweetbutton-display-on-home">
 									<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-display-on-home', 1) ?> 
 									Homepage 
+								</label>
+								<label for="tweetbutton-display-on-pages">
 									<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-display-on-pages', 1) ?>
 									Pages
 								</label>
+								
 							</fieldset>
 						</td>
 					</tr>
