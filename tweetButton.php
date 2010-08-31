@@ -55,6 +55,8 @@ class TweetButton
 			add_option('tweetbutton-data-count');
 			add_option('tweetbutton-disable-auto');
 			add_option('tweetbutton-position');
+			add_option('tweetbutton-display-on-home');
+			add_option('tweetbutton-display-on-pages');
 		}
 		
 		$this->Html = new HtmlHelper();
@@ -97,6 +99,8 @@ class TweetButton
 		register_setting('tweetbutton-options', $this->option_prefix . 'data-count');
 		register_setting('tweetbutton-options', $this->option_prefix . 'disable-auto');
 		register_setting('tweetbutton-options', $this->option_prefix . 'position');
+		register_setting('tweetbutton-options', $this->option_prefix . 'display-on-home');
+		register_setting('tweetbutton-options', $this->option_prefix . 'display-on-pages');
 	}
 	
 	public function addOptionsPage()
@@ -107,6 +111,21 @@ class TweetButton
 	public function theContentFilter($content)
 	{
 		$out = $this->buildTwitterHtml( $this->getDataAttributes( get_permalink(), get_the_title() ) );
+		
+		$display = false; # Default
+		
+		if(is_home()) {
+			$display = (boolean) get_option($this->option_prefix . 'display-on-home');
+		} elseif(is_page()) {
+			$display = (boolean) get_option($this->option_prefix . 'display-on-pages');
+		} elseif(is_single()) {
+			$display = true;	
+		}
+		
+		if($display == false)
+		{
+			return $content;
+		}
 		
 		if($this->getPosition() == 'before')
 		{

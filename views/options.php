@@ -28,6 +28,19 @@
 						</td>
 					</tr>
 					<tr valign="top">
+						<th scope="row">Display Button on</th>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Pages tweet buttons will appear on:</span></legend>
+								<label for="users_can_register">
+									<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-display-on-home', 1) ?> 
+									Homepage 
+									<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-display-on-pages', 1) ?>
+									Pages
+								</label>
+							</fieldset>
+						</td>
+					</tr>
+					<tr valign="top">
 						<th scope="row"><label for="tweetbutton-position">Position of TweetButton</label></th>
 						<td>
 							<?php
