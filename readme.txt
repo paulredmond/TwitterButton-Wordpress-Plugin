@@ -4,7 +4,7 @@ Donate link: http://www.goredmonster.com
 Tags: twitter, twitter button, retweet, social media
 Requires at least: 3.0
 Tested up to: 3.0.1
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Automatically adds the new official Twitter tweet button after a post.
 
