@@ -92,7 +92,7 @@
 						<th scope="row">Output Options</th>
 						<td>
 							<fieldset><legend class="screen-reader-text"><span>Auto-Output</span></legend>
-								<label for="users_can_register">
+								<label for="tweetbutton-disable-auto">
 									<?php echo $tweetbutton->Html->input('checkbox', 'tweetbutton-disable-auto', 1) ?>
 									Disable Auto-Output <br /><span class="description">(Disabling auto-output requires theme developer to output code)</span>
 								</label>
