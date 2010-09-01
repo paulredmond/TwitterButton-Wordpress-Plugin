@@ -2,7 +2,7 @@
 /*
 Plugin Name: TweetButton
 Plugin URI: http://goredmonster.com
-Description: Adds official Twitter button to posts.
+Description: Adds official Twitter button to posts. | <a href="options-general.php?page=tweetbutton-options">Plugin Settings</a> | <a href="http://wiki.github.com/paulredmond/TwitterButton-Wordpress-Plugin/">Wiki (on GitHub.com)</a>
 Version: 1.0
 Author: Paul Redmond
 Author URI: http://goredmonster.com

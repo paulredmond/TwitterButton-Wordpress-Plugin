@@ -41,6 +41,7 @@
 								</label>
 								
 							</fieldset>
+							<span class="description">Button will automatically be displayed on posts.</span>
 						</td>
 					</tr>
 					<tr valign="top">
